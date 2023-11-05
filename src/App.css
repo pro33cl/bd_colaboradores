@@ -1,0 +1,50 @@
+
+/* ESTILOS POR DEFECTO (device-width <=576px)*/
+
+.formulario{
+    grid-area: formulario;
+}
+
+.listado{
+    grid-area: listado;
+}
+
+.buscador{
+    grid-area: buscador;
+}
+
+main{
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-areas: 
+    "formulario"
+    "buscador"
+    "listado";
+    grid-template-rows: 5fr 1fr auto;
+    grid-template-columns: 1fr;
+}
+
+/* ESTILOS PARA PANTALLAS MAYORES A 576px Y MENORES A 992px , PANTALLAS TABLETS*/
+@media(min-width: 576px){
+    main{
+        grid-template-areas: 
+        "formulario buscador"
+        "formulario listado"
+        ;
+        grid-template-rows: 1fr 6fr;
+        grid-template-columns: 3fr 5fr;
+    }
+}
+
+/* ESTILOS PARA PANTALLAS MAYORES A 992px , PANTALLAS ESCRITORIO*/
+@media(min-width: 992px){
+    main{
+        grid-template-areas: 
+        "formulario buscador"
+        "formulario listado"
+        ;
+        grid-template-rows: 1fr 6fr;
+        grid-template-columns: 1.5fr 4fr;
+    }
+}
