@@ -10,7 +10,7 @@ const Buscador = (props) => {
     }
 
   return (
-    <div className='p-3'>
+    <div style={{width:"calc(100%-3rem)", padding:"1rem"}}>
         <Form.Control type='text' placeholder='Busca un colaborador' name='search' value={inputSearch} onChange={handlerOnChange}></Form.Control>
     </div>
   );

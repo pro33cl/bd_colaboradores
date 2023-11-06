@@ -3,12 +3,9 @@ import Table from 'react-bootstrap/Table';
 
 const Listado = (props) => {
     const {listUser, inputSearch}=props;
-    console.log(listUser);
-    console.log(inputSearch);
     var listShowed= listUser.filter((element)=>(element.nombre).toLowerCase().includes(inputSearch.toLowerCase()) || (element.correo).toLowerCase().includes(inputSearch.toLowerCase()) || (element.edad).toString().includes(inputSearch) || (element.cargo).toLowerCase().includes(inputSearch.toLowerCase()) || element.telefono.includes(inputSearch));
-    console.log(listShowed);
   return (
-    <>
+    <div style={{width:"calc(100%-3rem)", padding:"1rem"}}>
         <Table responsive>
             <thead>
                 <tr>
@@ -35,7 +32,7 @@ const Listado = (props) => {
                 }
             </tbody>
         </Table>
-    </>
+    </div>
   );
 };
 

@@ -7,6 +7,7 @@
 
 .listado{
     grid-area: listado;
+    font-size: 0.5rem;
 }
 
 .buscador{
@@ -35,6 +36,9 @@ main{
         grid-template-rows: 4rem auto;
         grid-template-columns: 3fr 5fr;
     }
+    .listado{
+        font-size: 0.7rem;
+    }
 }
 
 /* ESTILOS PARA PANTALLAS MAYORES A 992px , PANTALLAS ESCRITORIO*/
@@ -46,5 +50,8 @@ main{
         ;
         grid-template-rows: 4rem auto;
         grid-template-columns: 1.5fr 4fr;
+    }
+    .listado{
+        font-size: 1rem;
     }
 }

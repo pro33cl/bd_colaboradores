@@ -5,37 +5,12 @@ import Buscador from './components/Buscador/Buscador';
 import Listado from './components/Listado/Listado';
 import { useState } from 'react';
 import MyAlert from './components/MyAlert/MyAlert';
+import {BaseColaboradores} from './components/BdColaboradores/BaseColaboradores';
 
 function App() {
   
-  const BdColaboradoresImportada=[
-    {
-      id:"1",
-      nombre:"Juan Soto",
-      correo:"juans@colaborador.com",
-      edad:"23",
-      cargo:"Desarrollador FrontEnd",
-      telefono: "99887766"
-    },
-    {
-      id:"2",
-      nombre:"Lucas Pailamilla",
-      correo:"lucasps@colaborador.com",
-      edad:"31",
-      cargo:"Desarrollador Backend",
-      telefono: "88779955"
-    },
-    {
-      id:"3",
-      nombre:"Diego Riquelme",
-      correo:"diegor@colaborador.com",
-      edad:"28",
-      cargo:"Ingeniero DevOps",
-      telefono: "99226644"
-    },
-  ];
+  const BdColaboradoresImportada= BaseColaboradores;
 
-  
   const formatearBd=function(bdInical){
     let bdFormateada= [];
     bdInical.forEach(element => {
@@ -59,11 +34,10 @@ function App() {
   const [bdId,SetBdId]= useState(lastBdId);
 
   var answerVerify=false;
-  /*var bdId=lastBdId;*/
+  
 
   const enviarBackend= function(inputUser){
     bdColaboradores.push(inputUser);
-    console.log(bdColaboradores);
   }
 
   const handlerForm = function(){
@@ -96,7 +70,7 @@ function App() {
       let inputUser = {id:idCount, nombre:inputForm.name, correo:inputForm.email, edad:inputForm.age,cargo:inputForm.position,telefono:inputForm.phone, visibility:true};
       SetListUser([...listUser,inputUser]);
       enviarBackend(inputUser);
-      console.log(idCount);
+      SetInputForm({name:"", email:"", age:"", position:"", phone:""});
   }
 
 

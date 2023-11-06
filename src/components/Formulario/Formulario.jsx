@@ -16,7 +16,7 @@ const Formulario = (props) => {
     }
 
   return (
-    <div className='p-3' style={{width:"100%"}}>
+    <div style={{width:"calc(100%-3rem)", padding:"1rem"}}>
         <h1 className='fs-2'>Agregar Colaborador</h1>
         <Form onSubmit={handlerOnSubmit}>
             <Form.Group className="mb-3">

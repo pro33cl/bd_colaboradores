@@ -13,7 +13,7 @@ const MyAlert = (props) => {
 
   return (
     <>
-        <div className='p-3'>
+        <div style={{width:"calc(100%-3rem)", padding:"1rem"}}>
             <Alert variant={typeAlert}  style={{width:"100%", fontSize:"0.8rem"}}>{message}</Alert>
         </div>
     </>
