@@ -38,12 +38,12 @@ function App() {
   const [bdId,SetBdId]=useState(lastBdId);
   const [inputForm, SetInputForm]= useState({name:"", email:"", age:"", position:"", phone:""});
   const [inputSearch, SetInputSearch]= useState("");
-  const [listUser, SetListUser]= useState(BdColaboradores);
+  const [listUser, SetListUser]= useState(BdColaboradoresIinicial);
 
   return (
     <>
       <main>
-        <section className='formulario bg-danger'>
+        <section className='formulario'>
           <Formulario inputForm={inputForm} SetInputForm={SetInputForm} listUser={listUser} SetListUser={SetListUser} bdId={bdId} SetBdId={SetBdId}></Formulario>
           <p>formulario</p>
         </section>

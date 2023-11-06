@@ -7,17 +7,18 @@ import Form from 'react-bootstrap/Form';
 const Formulario = (props) => {
 
     const {inputForm, SetInputForm, listUser , SetListUser, bdId, SetBdId }= props; 
-    var answer=false;
-    var message="";
+    const [answer,SetAnswer]= useState(false);
+    const [message,SetMessage]=useState("");
+    const [firstSubmit, SetFirstSubmit]= useState(false);
 
-   
     const handlerOnChange = function (e){
         SetInputForm({...inputForm, [e.target.name]:e.target.value});
     }
     
     const handlerOnSubmit = function (e){
         e.preventDefault();
-        (answer,message)= inputVerification(inputForm);
+        SetFirstSubmit(true);
+        inputVerification(inputForm);
         if(answer==true){
             let inputUser = {id:SetBdId(bdId+1), nombre:inputForm.name, correo:inputForm.email, edad:inputForm.age,cargo:inputForm.position,telefono:inputForm.phone};
             SetListUser([...listUser,inputUser]);
@@ -25,15 +26,14 @@ const Formulario = (props) => {
     }
 
     const inputVerification = function (inputForm){
-        
-
-        return answer,message;
+        SetAnswer(true);
+        SetMessage("prueba");
     }
 
 
   return (
-    <div>
-        <h1>Agregar Colaborador</h1>
+    <div className='p-3' style={{width:"100%"}}>
+        <h1 className='fs-2'>Agregar Colaborador</h1>
         <Form onSubmit={handlerOnSubmit}>
             <Form.Group className="mb-3">
                 <Form.Control type="text" placeholder="Nombre del Colaborador" name='name' value={inputForm.name} onChange={handlerOnChange}/>
@@ -52,7 +52,7 @@ const Formulario = (props) => {
             </Form.Group>
             <Button variant="primary" type="submit">Agregar Colaborador</Button>
         </Form>
-        <MyAlert answer={answer} message={message}></MyAlert>
+        {firstSubmit==true? <MyAlert answer={answer} message={message}></MyAlert>: null}
     </div>
   );
 };
