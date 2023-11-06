@@ -63,6 +63,7 @@ function App() {
 
   const enviarBackend= function(inputUser){
     bdColaboradores.push(inputUser);
+    console.log(bdColaboradores);
   }
 
   const handlerForm = function(){
@@ -110,8 +111,8 @@ function App() {
         <section className='buscador'>
           <Buscador inputSearch={inputSearch} SetInputSearch={SetInputSearch}></Buscador>
         </section>
-        <section className='listado bg-warning'>
-          <Listado listUser={listUser}></Listado>
+        <section className='listado'>
+          <Listado listUser={listUser} inputSearch={inputSearch}></Listado>
         </section>
       </main>
     </>
