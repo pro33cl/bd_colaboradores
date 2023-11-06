@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 const Formulario = (props) => {
 
-    const {inputForm, SetInputForm, listUser , SetListUser, bdId, SetBdId, answer, SetAnswer, SetMessage, SetFirstSubmit, enviarBackend }= props; 
+    const {inputForm, SetInputForm, SetAnswer, pushInputForm, SetMessage, SetFirstSubmit }= props; 
 
     const handlerOnChange = function (e){
         SetInputForm({...inputForm, [e.target.name]:e.target.value});
@@ -14,17 +14,10 @@ const Formulario = (props) => {
     const handlerOnSubmit = function (e){
         e.preventDefault();
         SetFirstSubmit(true);
-        inputVerification(inputForm);
-        if(answer==true){
-            let inputUser = {id:SetBdId(bdId+1), nombre:inputForm.name, correo:inputForm.email, edad:inputForm.age,cargo:inputForm.position,telefono:inputForm.phone};
-            SetListUser([...listUser,inputUser]);
-            enviarBackend(inputUser);
-        }   
-    }
-
-    const inputVerification = function (inputForm){
+        /* Verificar Datos Acá*/
         SetAnswer(true);
         SetMessage("prueba");
+        pushInputForm(); 
     }
 
   return (
@@ -32,19 +25,19 @@ const Formulario = (props) => {
         <h1 className='fs-2'>Agregar Colaborador</h1>
         <Form onSubmit={handlerOnSubmit}>
             <Form.Group className="mb-3">
-                <Form.Control type="text" placeholder="Nombre del colaborador" name='name' value={inputForm.name} onChange={handlerOnChange}/>
+                <Form.Control type="text" placeholder="Nombre del colaborador" name='name' id='name' value={inputForm.name} onChange={handlerOnChange}/>
             </Form.Group>
             <Form.Group className="mb-3">
-                <Form.Control type="email" placeholder="Email del colaborador" name='email' value={inputForm.email} onChange={handlerOnChange}/>
+                <Form.Control type="email" placeholder="Email del colaborador" name='email' id='email' value={inputForm.email} onChange={handlerOnChange}/>
             </Form.Group>
             <Form.Group className="mb-3">
-                <Form.Control type="number" placeholder="Edad del colaborador" name='age' value={inputForm.age} onChange={handlerOnChange}/>
+                <Form.Control type="number" placeholder="Edad del colaborador" name='age' id='age' value={inputForm.age} onChange={handlerOnChange}/>
             </Form.Group>
             <Form.Group className="mb-3">
-                <Form.Control type="text" placeholder="Cargo del colaborador" name='position' value={inputForm.position} onChange={handlerOnChange}/>
+                <Form.Control type="text" placeholder="Cargo del colaborador" name='position' id='position' value={inputForm.position} onChange={handlerOnChange}/>
             </Form.Group>
             <Form.Group className="mb-3">
-                <Form.Control type="text" placeholder="Telefono del colaborador" name='phone' value={inputForm.phone} onChange={handlerOnChange}/>
+                <Form.Control type="text" placeholder="Telefono del colaborador" name='phone' id='phone' value={inputForm.phone} onChange={handlerOnChange}/>
             </Form.Group>
             <Button variant="primary" type="submit" style={{width:"100%"}}>Agregar colaborador</Button>
         </Form>

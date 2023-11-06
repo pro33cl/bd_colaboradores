@@ -8,7 +8,7 @@ import MyAlert from './components/MyAlert/MyAlert';
 
 function App() {
   
-  const BdColaboradoresIinicial=[
+  const BdColaboradoresImportada=[
     {
       id:"1",
       nombre:"Juan Soto",
@@ -35,36 +35,61 @@ function App() {
     },
   ];
 
-  var bdColaboradores= new Array (BdColaboradoresIinicial);
+  
+  const formatearBd=function(bdInical){
+    let bdFormateada= [];
+    bdInical.forEach(element => {
+      bdFormateada.push({id:Number(element.id), nombre:element.nombre, correo:element.correo, edad:Number(element.edad), cargo:element.cargo, telefono:element.telefono, visibility:true});
+    });
+    return bdFormateada;
+  }
 
-  const lastBdId= BdColaboradoresIinicial[BdColaboradoresIinicial.length-1].id;
+  var BdColaboradoresInicial= new Array(BdColaboradoresImportada.length);
+  BdColaboradoresInicial=formatearBd(BdColaboradoresImportada);
+  var bdColaboradores= new Array (BdColaboradoresInicial);
+
+  const lastBdId= Number(BdColaboradoresInicial[BdColaboradoresInicial.length-1].id);
+  console.log(lastBdId);
+  console.log(lastBdId+1);
   const [bdId,SetBdId]=useState(lastBdId);
   const [inputForm, SetInputForm]= useState({name:"", email:"", age:"", position:"", phone:""});
   const [inputSearch, SetInputSearch]= useState("");
-  const [listUser, SetListUser]= useState(BdColaboradoresIinicial);
+  const [listUser, SetListUser]= useState(BdColaboradoresInicial);
+
+  console.log(listUser);
  
-  const [answer,SetAnswer]= useState(false);
+  const [answer,SetAnswer]= useState(0);
   const [message,SetMessage]=useState("");
   const [firstSubmit, SetFirstSubmit]= useState(false);
 
+  
   const enviarBackend= function(inputUser){
     bdColaboradores.push(inputUser);
     console.log(bdColaboradores);
   }
 
+  const pushInputForm= function(){
+    if(answer==1){
+      let inputUser = {id:SetBdId(bdId+1), nombre:inputForm.name, correo:inputForm.email, edad:inputForm.age,cargo:inputForm.position,telefono:inputForm.phone, visibility:true};
+      SetListUser([...listUser,inputUser]);
+      enviarBackend(inputUser);
+    }  
+  }
+
+  
+
   return (
     <>
       <main>
         <section className='formulario'>
-          <Formulario inputForm={inputForm} SetInputForm={SetInputForm} listUser={listUser} SetListUser={SetListUser} bdId={bdId} SetBdId={SetBdId} answer={answer} SetAnswer={SetAnswer} SetMessage={SetMessage} SetFirstSubmit={SetFirstSubmit} enviarBackend={enviarBackend}></Formulario>
+          <Formulario inputForm={inputForm} SetInputForm={SetInputForm} SetAnswer={SetAnswer} pushInputForm={pushInputForm} SetMessage={SetMessage} SetFirstSubmit={SetFirstSubmit}></Formulario>
           {firstSubmit==true? <MyAlert answer={answer} message={message}></MyAlert>: null}
         </section>
         <section className='buscador'>
           <Buscador inputSearch={inputSearch} SetInputSearch={SetInputSearch}></Buscador>
         </section>
         <section className='listado bg-warning'>
-          <Listado listUser={listUser} inputSearch={inputSearch}></Listado>
-          <p>listado</p>
+          <Listado listUser={listUser}></Listado>
         </section>
       </main>
     </>
