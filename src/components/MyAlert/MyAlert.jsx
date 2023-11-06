@@ -13,7 +13,9 @@ const MyAlert = (props) => {
 
   return (
     <>
-        <Alert variant={typeAlert} className='mt-3' style={{width:"100%", fontSize:"0.8rem"}}>{message}</Alert>
+        <div className='p-3'>
+            <Alert variant={typeAlert}  style={{width:"100%", fontSize:"0.8rem"}}>{message}</Alert>
+        </div>
     </>
   );
 };

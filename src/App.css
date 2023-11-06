@@ -21,7 +21,7 @@ main{
     "formulario"
     "buscador"
     "listado";
-    grid-template-rows: 5fr 1fr auto;
+    grid-template-rows: 30rem 4rem auto;
     grid-template-columns: 1fr;
 }
 
@@ -32,7 +32,7 @@ main{
         "formulario buscador"
         "formulario listado"
         ;
-        grid-template-rows: 1fr 6fr;
+        grid-template-rows: 4rem auto;
         grid-template-columns: 3fr 5fr;
     }
 }
@@ -44,7 +44,7 @@ main{
         "formulario buscador"
         "formulario listado"
         ;
-        grid-template-rows: 1fr 6fr;
+        grid-template-rows: 4rem auto;
         grid-template-columns: 1.5fr 4fr;
     }
 }

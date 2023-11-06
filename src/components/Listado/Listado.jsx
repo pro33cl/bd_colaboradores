@@ -1,9 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 
-const Listado = () => {
+const Listado = (props) => {
+    const {listUser, inputSearch}=props;
+
+    const renderList= function(listUser){
+        
+
+    }
+
   return (
-    <div>
+    <div className='p-3'>
 
     </div>
   );
