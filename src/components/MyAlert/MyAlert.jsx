@@ -5,9 +5,9 @@ import Alert from 'react-bootstrap/Alert';
 
 const MyAlert = (props) => {
 
-    const {answer, message}=props;
+    const {colorMessage, message}=props;
     var typeAlert='danger';
-    if(answer==true){
+    if(colorMessage==true){
         typeAlert='success';
     }
 

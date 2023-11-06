@@ -2,29 +2,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 
 const Listado = (props) => {
-    var {listUser,}=props;
-
-    const renderList= function(){
-        let tabla;
-        tabla= listUser.map((element)=>{
-            return (
-                <div key={element.id} className='d-flex'>
-                    <div>{element.nombre}</div>
-                    <div>{element.correo}</div>
-                    <div>{element.edad}</div>
-                    <div>{element.cargo}</div>
-                    <div>{element.telefono}</div>
-                </div>
-            );
-        }
-        );
-        return tabla;
-    }
+    var {listUser}=props;
 
   return (
-    <div className='p-3'>
-        {renderList()}
-    </div>
+    <>
+        {
+            listUser.map((element)=>{
+                return (
+                    <div key={element.id} className='d-flex'>
+                        <div key={element.id+"nombre"}>{element.nombre}</div>
+                        <div key={element.id+"correo"}>{element.correo}</div>
+                        <div key={element.id+"edad"}>{element.edad}</div>
+                        <div key={element.id+"cargo"}>{element.cargo}</div>
+                        <div key={element.id+"telefono"}>{element.telefono}</div>
+                    </div>
+                );
+            })
+        }
+    </>
   );
 };
 

@@ -1,23 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const Formulario = (props) => {
 
-    const {inputForm, SetInputForm, SetAnswer, pushInputForm, SetMessage, SetFirstSubmit }= props; 
+    const {inputForm, SetInputForm, handlerForm}= props; 
 
     const handlerOnChange = function (e){
         SetInputForm({...inputForm, [e.target.name]:e.target.value});
     }
     
-    const handlerOnSubmit = function (e){
+    function handlerOnSubmit(e){
         e.preventDefault();
-        SetFirstSubmit(true);
-        /* Verificar Datos Acá*/
-        SetAnswer(true);
-        SetMessage("prueba");
-        pushInputForm(); 
+        handlerForm();
     }
 
   return (

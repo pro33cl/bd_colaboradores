@@ -47,43 +47,65 @@ function App() {
   var BdColaboradoresInicial= new Array(BdColaboradoresImportada.length);
   BdColaboradoresInicial=formatearBd(BdColaboradoresImportada);
   var bdColaboradores= new Array (BdColaboradoresInicial);
-
   const lastBdId= Number(BdColaboradoresInicial[BdColaboradoresInicial.length-1].id);
-  console.log(lastBdId);
-  console.log(lastBdId+1);
-  const [bdId,SetBdId]=useState(lastBdId);
+
+  
   const [inputForm, SetInputForm]= useState({name:"", email:"", age:"", position:"", phone:""});
   const [inputSearch, SetInputSearch]= useState("");
   const [listUser, SetListUser]= useState(BdColaboradoresInicial);
-
-  console.log(listUser);
- 
-  const [answer,SetAnswer]= useState(0);
+  const [colorMessage, SetColorMessage]=useState(false);
   const [message,SetMessage]=useState("");
   const [firstSubmit, SetFirstSubmit]= useState(false);
+  const [bdId,SetBdId]= useState(lastBdId);
 
-  
+  var answerVerify=false;
+  /*var bdId=lastBdId;*/
+
   const enviarBackend= function(inputUser){
     bdColaboradores.push(inputUser);
-    console.log(bdColaboradores);
   }
 
-  const pushInputForm= function(){
-    if(answer==1){
-      let inputUser = {id:SetBdId(bdId+1), nombre:inputForm.name, correo:inputForm.email, edad:inputForm.age,cargo:inputForm.position,telefono:inputForm.phone, visibility:true};
+  const handlerForm = function(){
+    SetFirstSubmit(true);
+    inputFormVerify(inputForm);
+  }
+
+  const inputFormVerify= function(inputForm){
+    if(!inputForm.name=="" && !inputForm.email=="" && !inputForm.age=="" && !inputForm.position=="" && !inputForm.phone==""){
+      answerVerify=true;
+    }
+    else{
+      answerVerify=false;
+    }
+
+    if(answerVerify==false){
+      SetMessage("Faltan datos por ingresar");
+      SetColorMessage(false);
+    }
+    else{
+      SetMessage("Datos ingresados correctamente");
+      SetColorMessage(true);
+      var idCount=bdId+1;
+      SetBdId(idCount);
+      pushInputForm(inputForm, idCount);
+    }
+  }
+
+  const pushInputForm= function(inputForm, idCount){
+      let inputUser = {id:idCount, nombre:inputForm.name, correo:inputForm.email, edad:inputForm.age,cargo:inputForm.position,telefono:inputForm.phone, visibility:true};
       SetListUser([...listUser,inputUser]);
       enviarBackend(inputUser);
-    }  
+      console.log(idCount);
   }
 
-  
+
 
   return (
     <>
       <main>
         <section className='formulario'>
-          <Formulario inputForm={inputForm} SetInputForm={SetInputForm} SetAnswer={SetAnswer} pushInputForm={pushInputForm} SetMessage={SetMessage} SetFirstSubmit={SetFirstSubmit}></Formulario>
-          {firstSubmit==true? <MyAlert answer={answer} message={message}></MyAlert>: null}
+          <Formulario inputForm={inputForm} SetInputForm={SetInputForm} handlerForm={handlerForm}></Formulario>
+          {firstSubmit==true? <MyAlert colorMessage={colorMessage} message={message}></MyAlert>: null}
         </section>
         <section className='buscador'>
           <Buscador inputSearch={inputSearch} SetInputSearch={SetInputSearch}></Buscador>
